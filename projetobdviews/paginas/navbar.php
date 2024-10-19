@@ -16,6 +16,10 @@
 
         <!-- Após desenvolver o código em PHP, essa funcionalidade só será visível ao administrador -->
          <!-- Início -->
+          <?php
+          if($_SESSION['nivel'] == 'adm'):
+
+          ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Usuários
@@ -25,6 +29,11 @@
           </ul>
         </li>
          <!-- Fim -->
+        <?php
+          endif;
+        ?>
+
+
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

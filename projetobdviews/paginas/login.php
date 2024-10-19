@@ -1,4 +1,8 @@
 <?php 
+
+
+    require_once('../funcoes/usuario.php');
+
     session_start();
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         try{
@@ -6,8 +10,14 @@
             $senha = $_POST['senha'] ?? "";
 
             if($email != "" && $senha != "")
-                if($email == "adm@adm.com" && $senha == '123'){
-                    $_SESSION['usuario'] = "Adiministrador";
+                $usuario = login($email, $senha);
+
+
+
+                if($usuario){
+                    $_SESSION['usuario'] = $usuario['nome'];
+                    $_SESSION['nivel'] = $usuario['nivel'];
+
                     $_SESSION['acesso'] = true;
                     
                     header("Location: dashboard.php");
@@ -16,7 +26,7 @@
                 }
             
         }catch(Exception $e){
-            echo "Erro: ".$e->getMenssage();
+            echo "Erro: ".$e->getMessage();
         }
     }
     require_once 'cabecalho.php'; 
